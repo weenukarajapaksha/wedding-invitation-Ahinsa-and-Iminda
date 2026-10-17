@@ -18,7 +18,7 @@
           // Wine and black. "wine-bright" is the one for small text on the dark
           // ground; "wine" is too dark for anything under 24px.
           "ink": "#120909", "ink-2": "#1B0F0E", "ink-3": "#241413",
-          "wine": "#D13429", "wine-bright": "#EC8B7C", "wine-deep": "#8E1E18",
+          "wine": "#9C2A26", "wine-bright": "#E08279", "wine-deep": "#6B1714",
           "cream": "#F4ECE7", "muted": "#C8B4AE"
         },
         // NB: do not add a "full" key here. Overriding it turns every
@@ -87,15 +87,15 @@
     z-index: -9;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 80% 48% at 50% 0%, rgba(209, 52, 41, 0.42), transparent 70%),
-      radial-gradient(ellipse 70% 42% at 50% 100%, rgba(142, 30, 24, 0.34), transparent 72%);
+      radial-gradient(ellipse 80% 48% at 50% 0%, rgba(156, 42, 38, 0.42), transparent 70%),
+      radial-gradient(ellipse 70% 42% at 50% 100%, rgba(107, 23, 20, 0.34), transparent 72%);
   }
 
   .panel {
     /* A wine-tinted gradient and an inset top highlight, so the cards have
        body. At a flat 3.5% white they were nearly invisible on the dark ground
        and the middle of the page read as a void. */
-    background: linear-gradient(160deg, rgba(209, 52, 41, 0.16), rgba(255, 255, 255, 0.03) 58%);
+    background: linear-gradient(160deg, rgba(156, 42, 38, 0.16), rgba(255, 255, 255, 0.03) 58%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(236, 139, 124, 0.3);
@@ -110,7 +110,7 @@
   .corner {
     position: absolute;
     width: 150px; height: 150px;
-    color: #D13429;
+    color: #9C2A26;
     opacity: 0.3;
     pointer-events: none;
   }
@@ -129,7 +129,7 @@
     letter-spacing: 0.02em;
     /* A narrow wine highlight sweeping warm ivory type, kept light overall so
        the names never lose contrast against the near-black ground. */
-    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #EC8B7C 50%, #F4ECE7 58%, #F4ECE7 100%);
+    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #E08279 50%, #F4ECE7 58%, #F4ECE7 100%);
     background-size: 260% auto;
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
@@ -144,7 +144,7 @@
     content: '';
     position: absolute; left: 50%; bottom: 0;
     height: 1px; width: 0;
-    background: linear-gradient(90deg, transparent, #EC8B7C 50%, transparent);
+    background: linear-gradient(90deg, transparent, #E08279 50%, transparent);
     transform: translateX(-50%);
     animation: underline-grow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: var(--u-delay, 1s);
@@ -166,7 +166,7 @@
   .lineage-label {
     font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
     letter-spacing: 0.34em; text-transform: uppercase;
-    color: #EC8B7C; padding-left: 0.34em;
+    color: #E08279; padding-left: 0.34em;
   }
   .lineage-name {
     font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
@@ -191,7 +191,7 @@
        unambiguous. */
     font-family: 'Great Vibes', cursive;
     font-size: clamp(2.9rem, 10vw, 4.2rem); line-height: 1;
-    color: #EC8B7C; transform: translateY(-0.08em);
+    color: #E08279; transform: translateY(-0.08em);
     filter: drop-shadow(0 2px 14px rgba(236, 139, 124, 0.35));
   }
 
@@ -204,7 +204,7 @@
     position: absolute;
     bottom: 0;
     left: var(--x, 50%);
-    color: var(--hue, #EC8B7C);
+    color: var(--hue, #E08279);
     font-size: var(--size, 16px);
     opacity: 0;
     animation: heart-blow var(--dur, 10s) ease-in-out infinite;
@@ -252,7 +252,7 @@
     border-bottom: 1px solid rgba(236, 139, 124, 0.4) !important;
     padding: 10px 2px; transition: border-color .3s ease;
   }
-  .field:focus { border-bottom-color: #EC8B7C !important; }
+  .field:focus { border-bottom-color: #E08279 !important; }
   .field::placeholder { color: #9A8683; }
   .stepper {
     /* Matches the +/- button height; at its natural 41px the underline sat
@@ -271,7 +271,7 @@
     border-radius: 9999px; cursor: pointer; transition: all .25s ease;
     user-select: none; color: #E8D8D2;
   }
-  .pills input:checked + label { background: #D13429; border-color: #D13429; color: #fff; }
+  .pills input:checked + label { background: #9C2A26; border-color: #9C2A26; color: #fff; }
 
   .toast {
     position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
@@ -287,7 +287,7 @@
     70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(201,105,122,0); }
     100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(201,105,122,0); }
   }
-  .nav-active { color: #EC8B7C !important; }
+  .nav-active { color: #E08279 !important; }
 
   @media (prefers-reduced-motion: reduce) {
     .name { animation: none; }
