@@ -71,16 +71,23 @@ thin outlines placed there loses definition. That is why `#page-bg::after`
 carries a vertical scrim, and why the RSVP section sits on a `.panel` like the
 cards above it rather than directly on the photo.
 
-The photo sits at 0.55 and `#page-bg::after` carries a vertical scrim over it
-(0.68 at the top, 0.47 in the middle, 0.83 at the foot). Darken the page by
-raising those scrim values rather than by lowering the photo opacity: dropping
-the opacity blends the picture towards the near-black page colour and flattens
-it, where the scrim keeps its depth.
+Darkness comes from two places, and they do different jobs:
 
-Measured against the brightest patch behind each text block: names 13.1:1,
-small caps labels 5.4:1, the invitation line 6.1:1. All clear their thresholds.
-The invitation line is the one to watch, since it falls over the lighter floor
-of the photo — re-measure if you lighten the scrim.
+1. `filter: brightness(0.42) contrast(1.08) saturate(1.15)` on `#page-bg`
+   itself. This is the main control. It takes the photo down while the contrast
+   and saturate terms hold on to the drapery depth and colour, so it reads deep
+   rather than washed out.
+2. `#page-bg::after`, a vertical scrim (0.42 at the top, 0.24 in the middle,
+   0.60 at the foot), which only evens out the brighter bands.
+
+Reach for the brightness filter first. A scrim heavy enough to do the darkening
+on its own veils the picture towards flat black and kills its depth; the filter
+darkens without that loss, and measured better on every text pairing.
+
+Measured against the brightest patch behind each text block: names 15.0:1,
+small caps labels 6.0:1, the invitation line 7.9:1. All clear their thresholds
+comfortably. The invitation line is the one to watch, since it falls over the
+lighter floor of the photo — re-measure if you lighten either control.
 
 ## The venue photo
 
