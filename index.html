@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Iminda &amp; Ahinsa Homecoming Invitation</title>
+<meta content="Homecoming of Iminda &amp; Ahinsa — Wednesday 18 November 2026, Summerfields, Kottawa." name="description"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Great+Vibes&amp;family=Inter:wght@300;400;500;600&amp;family=Pinyon+Script&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          // Wine and black. "wine-bright" is the one for small text on the dark
+          // ground; "wine" is too dark for anything under 24px.
+          "ink": "#120A0C", "ink-2": "#1B1013", "ink-3": "#241619",
+          "wine": "#8E2F3F", "wine-bright": "#C9697A", "wine-deep": "#5E1C27",
+          "cream": "#F4ECE7", "muted": "#B9A8A4"
+        },
+        borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+        spacing: { "margin-desktop": "80px", "margin-mobile": "24px", "section-gap": "110px" },
+        fontFamily: {
+          body: ["Inter"], serif: ["Cormorant Garamond"], display: ["Playfair Display"], script: ["Pinyon Script"]
+        },
+        fontSize: {
+          "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "0.01em", fontWeight: "300" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "headline-sm": ["24px", { lineHeight: "32px", fontWeight: "400" }],
+          "headline-md": ["32px", { lineHeight: "40px", fontWeight: "400" }],
+          "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "400" }],
+          "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.2em", fontWeight: "600" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html, body { overflow-x: hidden; }
+  body { min-height: max(884px, 100dvh); background: #120A0C; }
+
+  /* Deep wine glow pooling behind the page. Fixed, and pinned to the large
+     viewport height so a collapsing mobile address bar cannot rescale it. */
+  #page-glow {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%; max-width: 600px; margin: 0 auto;
+    height: 100vh;
+    height: 100lvh;
+    z-index: -9;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 48% at 50% 0%, rgba(142, 47, 63, 0.42), transparent 70%),
+      radial-gradient(ellipse 70% 42% at 50% 100%, rgba(94, 28, 39, 0.34), transparent 72%);
+  }
+
+  .panel {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 105, 122, 0.22);
+  }
+  .vellum { background: radial-gradient(circle at 50% 40%, #241619 0%, #120A0C 75%); }
+  .smooth { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* ---------- Botanical corners ---------- */
+  .corner {
+    position: absolute;
+    width: 190px; height: 190px;
+    color: #8E2F3F;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  @media (min-width: 768px) { .corner { width: 240px; height: 240px; } }
+  .corner-tl { top: -8px; left: -14px; }
+  .corner-br { bottom: -8px; right: -14px; transform: rotate(180deg); }
+
+  /* ---------- Names ---------- */
+  .name {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 0.16em;
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(3.2rem, 13vw, 5.4rem);
+    line-height: 1.16;
+    letter-spacing: 0.02em;
+    /* A narrow wine highlight sweeping warm ivory type, kept light overall so
+       the names never lose contrast against the near-black ground. */
+    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #C9697A 50%, #F4ECE7 58%, #F4ECE7 100%);
+    background-size: 260% auto;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 22px rgba(201, 105, 122, 0.3));
+    animation: name-sheen 9s ease-in-out infinite;
+  }
+  @keyframes name-sheen {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+  }
+  .name::after {
+    content: '';
+    position: absolute; left: 50%; bottom: 0;
+    height: 1px; width: 0;
+    background: linear-gradient(90deg, transparent, #C9697A 50%, transparent);
+    transform: translateX(-50%);
+    animation: underline-grow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--u-delay, 1s);
+    animation-play-state: paused;
+  }
+  @keyframes underline-grow { to { width: 62%; } }
+
+  .rise {
+    opacity: 0;
+    transform: translateY(18px) scale(0.975);
+    animation: rise-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: paused;
+  }
+  @keyframes rise-in { to { opacity: 1; transform: none; } }
+  /* Held until the cover opens, otherwise the entrance plays unseen behind it */
+  body.entered .rise, body.entered .name::after { animation-play-state: running; }
+
+  .lineage { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .lineage-label {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.34em; text-transform: uppercase;
+    color: #C9697A; padding-left: 0.34em;
+  }
+  .lineage-name {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
+    font-size: clamp(1.2rem, 4.6vw, 1.6rem); line-height: 1.3; color: #E7D9D4;
+  }
+  .invite-line {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(1.05rem, 4.2vw, 1.3rem); line-height: 1.65; color: #CBB8B3;
+  }
+
+  /* Ampersand held between two hairlines */
+  .amp-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 22px; width: min(320px, 80%); margin: 26px auto 22px;
+  }
+  .amp-row .rule { flex: 1; height: 1px; }
+  .amp-row .rule-l { background: linear-gradient(90deg, transparent, rgba(201, 105, 122, 0.6)); }
+  .amp-row .rule-r { background: linear-gradient(90deg, rgba(201, 105, 122, 0.6), transparent); }
+  .amp {
+    /* Great Vibes, not Pinyon: its ampersand is a proper flourish, where
+       Pinyon's is a small mark. The names stay in Pinyon, whose capital A is
+       unambiguous. */
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.9rem, 10vw, 4.2rem); line-height: 1;
+    color: #C9697A; transform: translateY(-0.08em);
+    filter: drop-shadow(0 2px 14px rgba(201, 105, 122, 0.35));
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  @media (hover: hover) {
+    .lift { transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .lift:hover { transform: translateY(-6px); }
+  }
+
+  /* ---------- Form fields on dark ---------- */
+  input, textarea, select { box-shadow: none !important; border: none !important; }
+  input:focus, textarea:focus, select:focus { box-shadow: none !important; outline: none !important; }
+  .field {
+    width: 100%; background: transparent; color: #F4ECE7;
+    border-bottom: 1px solid rgba(201, 105, 122, 0.4) !important;
+    padding: 10px 2px; transition: border-color .3s ease;
+  }
+  .field:focus { border-bottom-color: #C9697A !important; }
+  .field::placeholder { color: rgba(185, 168, 164, 0.6); }
+  .stepper {
+    border-bottom: 1px solid rgba(201, 105, 122, 0.4) !important;
+    padding: 2px 0; text-align: center; background: transparent; color: #F4ECE7;
+  }
+  .pills input { position: absolute; opacity: 0; pointer-events: none; }
+  .pills label {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 10px 18px; border: 1px solid rgba(201, 105, 122, 0.45);
+    border-radius: 9999px; cursor: pointer; transition: all .25s ease;
+    user-select: none; color: #E7D9D4;
+  }
+  .pills input:checked + label { background: #8E2F3F; border-color: #8E2F3F; color: #fff; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
+    z-index: 200; opacity: 0; pointer-events: none;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  #cover.dissolve { opacity: 0; transform: translateY(-16px) scale(1.03); pointer-events: none; }
+  .ring { animation: pulse-ring 3s cubic-bezier(.215,.61,.355,1) infinite; }
+  @keyframes pulse-ring {
+    0% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(201,105,122,.28); }
+    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(201,105,122,0); }
+    100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(201,105,122,0); }
+  }
+  .nav-active { color: #C9697A !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .name { animation: none; }
+    .name::after { animation: none; width: 62%; }
+    .rise { opacity: 1; transform: none; animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .lift:hover { transform: none; }
+    .ring { animation: none; }
+  }
+</style>
+</head>
+<body class="bg-ink text-cream antialiased overflow-x-hidden overflow-y-hidden max-w-[600px] mx-auto relative" id="page-body">
+
+<div aria-hidden="true" id="page-glow"></div>
+
+<!-- Botanical motif, defined once and reused in every corner -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0,0 C5,-9 16,-11 22,0 C16,11 5,9 0,0 Z" id="leaf"/>
+    <g id="vine">
+      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6">
+        <path d="M2,2 C46,24 84,58 104,108 C120,148 152,176 206,198"/>
+        <path d="M2,2 C24,48 54,86 104,108"/>
+        <path d="M30,16 C44,44 44,70 34,96"/>
+        <path d="M16,34 C46,52 72,74 90,104"/>
+      </g>
+      <g fill="currentColor">
+        <use href="#leaf" transform="translate(26,14) rotate(26) scale(.82)"/>
+        <use href="#leaf" transform="translate(20,40) rotate(118) scale(.74)"/>
+        <use href="#leaf" transform="translate(48,34) rotate(34) scale(.9)"/>
+        <use href="#leaf" transform="translate(38,66) rotate(126) scale(.8)"/>
+        <use href="#leaf" transform="translate(70,58) rotate(42) scale(.95)"/>
+        <use href="#leaf" transform="translate(56,92) rotate(134) scale(.78)"/>
+        <use href="#leaf" transform="translate(92,86) rotate(48) scale(.88)"/>
+        <use href="#leaf" transform="translate(78,116) rotate(140) scale(.72)"/>
+        <use href="#leaf" transform="translate(114,116) rotate(52) scale(.84)"/>
+        <use href="#leaf" transform="translate(104,146) rotate(146) scale(.7)"/>
+        <use href="#leaf" transform="translate(140,146) rotate(44) scale(.8)"/>
+        <use href="#leaf" transform="translate(132,174) rotate(150) scale(.66)"/>
+        <use href="#leaf" transform="translate(168,172) rotate(40) scale(.74)"/>
+        <use href="#leaf" transform="translate(186,190) rotate(126) scale(.62)"/>
+        <circle cx="40" cy="22" r="2.6"/><circle cx="30" cy="54" r="2.2"/>
+        <circle cx="64" cy="48" r="2.4"/><circle cx="88" cy="74" r="2.6"/>
+        <circle cx="72" cy="104" r="2.2"/><circle cx="120" cy="104" r="2.4"/>
+        <circle cx="110" cy="134" r="2"/><circle cx="152" cy="136" r="2.4"/>
+        <circle cx="146" cy="164" r="2"/><circle cx="182" cy="162" r="2.2"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+<!-- Cover -->
+<div class="fixed inset-0 z-[100] vellum flex flex-col items-center justify-center smooth" id="cover">
+  <svg class="corner corner-tl" viewBox="0 0 240 240"><use href="#vine"/></svg>
+  <svg class="corner corner-br" viewBox="0 0 240 240"><use href="#vine"/></svg>
+  <div class="font-display text-headline-md text-cream mb-3 tracking-widest text-center">
+    I <span class="text-wine-bright">&amp;</span> A
+  </div>
+  <p class="font-body text-label-caps text-wine-bright tracking-widest uppercase mb-12">The Homecoming</p>
+  <button aria-label="Open the invitation" class="w-24 h-24 rounded-full border border-wine-bright/40 flex items-center justify-center group relative outline-none" id="unlock">
+    <span class="absolute inset-0 rounded-full border border-wine-bright/50 animate-ping opacity-20"></span>
+    <span class="w-16 h-16 rounded-full bg-wine/25 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110 ring">
+      <span class="material-symbols-outlined text-wine-bright">lock_open</span>
+    </span>
+  </button>
+  <div class="font-body text-label-caps text-muted mt-8 tracking-widest uppercase">Touch to Open</div>
+</div>
+
+<!-- Desktop header -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop h-20 fixed top-0 w-full z-50 bg-ink/70 backdrop-blur-md border-b border-wine/25 max-w-[600px]">
+  <button aria-label="Open menu" class="material-symbols-outlined text-cream hover:text-wine-bright transition-colors" id="menu-btn">menu</button>
+  <a class="font-display text-headline-md tracking-widest text-cream" href="#hero">I &amp; A</a>
+  <a aria-label="Go to RSVP" class="material-symbols-outlined text-cream hover:text-wine-bright transition-colors" href="#rsvp">favorite</a>
+</header>
+
+<!-- Drawer -->
+<aside class="fixed inset-y-0 left-0 w-80 bg-ink-2 z-[60] transform -translate-x-full transition-transform duration-300 ease-in-out shadow-xl flex flex-col py-6" id="drawer">
+  <div class="font-display text-headline-md text-cream pt-8 px-6 pb-6">Iminda &amp; Ahinsa</div>
+  <nav class="flex-1 overflow-y-auto py-4">
+    <ul class="flex flex-col gap-2">
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-muted hover:bg-ink-3 mx-2 rounded-xl transition-colors font-body text-body-lg" data-target="hero" href="#hero"><span class="material-symbols-outlined">favorite</span> Welcome</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-muted hover:bg-ink-3 mx-2 rounded-xl transition-colors font-body text-body-lg" data-target="evening" href="#evening"><span class="material-symbols-outlined">celebration</span> The Evening</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-muted hover:bg-ink-3 mx-2 rounded-xl transition-colors font-body text-body-lg" data-target="venue" href="#venue"><span class="material-symbols-outlined">location_on</span> Venue</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-muted hover:bg-ink-3 mx-2 rounded-xl transition-colors font-body text-body-lg" data-target="rsvp" href="#rsvp"><span class="material-symbols-outlined">send</span> RSVP</a></li>
+    </ul>
+  </nav>
+</aside>
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] hidden" id="overlay"></div>
+
+<main class="min-h-screen pt-6 md:pt-24 pb-40 md:pb-32 px-margin-mobile md:px-margin-desktop w-full mx-auto relative z-10">
+
+  <!-- Hero -->
+  <section class="min-h-[85vh] flex flex-col justify-center relative mt-0 md:mt-10 scroll-mt-24" id="hero">
+    <div class="relative py-6">
+      <svg class="corner corner-tl" viewBox="0 0 240 240"><use href="#vine"/></svg>
+      <svg class="corner corner-br" viewBox="0 0 240 240"><use href="#vine"/></svg>
+
+      <div class="relative z-10 flex items-center justify-center gap-3">
+        <span class="h-px w-6 bg-wine-bright/55"></span>
+        <span class="font-body text-label-caps text-wine-bright tracking-[0.3em] uppercase">With Joyful Hearts</span>
+        <span class="h-px w-6 bg-wine-bright/55"></span>
+      </div>
+
+      <!-- Each name sits directly under its own lineage line, as on the card -->
+      <h1 class="relative z-10 flex flex-col items-center text-center mt-9">
+        <span class="lineage rise" style="animation-delay:.05s;">
+          <span class="lineage-label">Son of</span>
+          <span class="lineage-name">Mr. &amp; Mrs. Liyanage</span>
+        </span>
+        <span class="name rise" style="animation-delay:.15s; --u-delay:.75s;">Iminda</span>
+
+        <span class="amp-row rise" style="animation-delay:.35s;">
+          <span class="rule rule-l" aria-hidden="true"></span>
+          <span class="amp">&amp;</span>
+          <span class="rule rule-r" aria-hidden="true"></span>
+        </span>
+
+        <span class="lineage rise" style="animation-delay:.45s;">
+          <span class="lineage-label">Daughter of</span>
+          <span class="lineage-name">Mr. &amp; Mrs. Vithanage</span>
+        </span>
+        <span class="name rise" style="animation-delay:.55s; --u-delay:1.15s;">Ahinsa</span>
+      </h1>
+
+      <div class="relative z-10 flex items-center justify-center gap-3 mt-5 opacity-80">
+        <span class="h-px w-10 bg-wine-bright/50"></span>
+        <span class="material-symbols-outlined text-wine-bright text-[14px]">auto_awesome</span>
+        <span class="h-px w-10 bg-wine-bright/50"></span>
+      </div>
+
+      <p class="invite-line relative z-10 mt-7 text-center max-w-sm mx-auto">
+        Request the honour of your presence to celebrate the homecoming of their loving children.
+      </p>
+    </div>
+
+    <!-- Save the date -->
+    <div class="reveal relative z-10 panel p-8 rounded-2xl mt-14 w-full max-w-sm mx-auto">
+      <div class="font-body text-label-caps text-wine-bright mb-2 tracking-widest text-center">Save the Date</div>
+      <div class="font-display text-headline-sm text-cream text-center">2026.11.18</div>
+      <div class="font-body text-body-md text-muted text-center mt-1 mb-6">Wednesday &middot; 5.30 PM &ndash; 10.30 PM</div>
+      <div class="h-px w-16 bg-wine-bright/45 mx-auto mb-6"></div>
+      <div class="font-body text-body-md text-muted flex flex-col items-center gap-3 text-center mb-6">
+        <span class="material-symbols-outlined text-wine-bright">location_on</span>
+        <span class="text-cream">Summerfields, Kottawa</span>
+      </div>
+      <div class="h-px w-16 bg-wine-bright/45 mx-auto mb-6"></div>
+
+      <div class="grid grid-cols-4 gap-2 mb-6" id="countdown">
+        <div class="flex flex-col items-center">
+          <span class="font-display text-headline-sm text-wine-bright" id="cd-d">00</span>
+          <span class="font-body text-label-caps text-muted uppercase mt-1">Days</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-display text-headline-sm text-wine-bright" id="cd-h">00</span>
+          <span class="font-body text-label-caps text-muted uppercase mt-1">Hrs</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-display text-headline-sm text-wine-bright" id="cd-m">00</span>
+          <span class="font-body text-label-caps text-muted uppercase mt-1">Min</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-display text-headline-sm text-wine-bright" id="cd-s">00</span>
+          <span class="font-body text-label-caps text-muted uppercase mt-1">Sec</span>
+        </div>
+      </div>
+
+      <button class="w-full flex items-center justify-center gap-2 border border-wine-bright/50 text-wine-bright px-5 py-3 rounded-full font-body text-label-caps tracking-widest uppercase hover:bg-wine/25 transition-colors" id="calendar-btn" type="button">
+        <span class="material-symbols-outlined text-[18px]">event_available</span>
+        Add to Calendar
+      </button>
+    </div>
+  </section>
+
+  <section class="mt-section-gap grid grid-cols-1 gap-12">
+
+    <!-- The evening -->
+    <div class="reveal lift panel p-10 rounded-3xl flex flex-col items-center text-center relative overflow-hidden scroll-mt-24" id="evening">
+      <div class="absolute top-0 right-0 p-6 opacity-20">
+        <span class="material-symbols-outlined text-wine-bright text-6xl">celebration</span>
+      </div>
+      <h2 class="font-display text-headline-md text-wine-bright mb-4">Homecoming</h2>
+      <div class="font-display text-display-lg text-cream mb-4">5:30 PM</div>
+      <div class="inline-flex items-center gap-2 bg-wine/30 text-cream px-5 py-2 rounded-full font-body text-label-caps border border-wine-bright/35">
+        <span class="material-symbols-outlined text-[16px]">schedule</span>
+        <span class="tracking-wider">Celebrations until 10.30 PM</span>
+      </div>
+      <p class="font-body text-body-md text-muted mt-4">Wednesday, 18 November 2026</p>
+    </div>
+
+    <!-- Venue -->
+    <div class="reveal lift panel rounded-3xl overflow-hidden relative scroll-mt-24" id="venue">
+      <div class="p-10 text-center relative">
+        <svg class="corner corner-tl" viewBox="0 0 240 240" style="opacity:.35"><use href="#vine"/></svg>
+        <div class="relative z-10">
+          <div class="font-body text-label-caps text-wine-bright tracking-widest uppercase mb-3">The Venue</div>
+          <h2 class="font-display text-headline-md text-cream mb-2">Summerfields</h2>
+          <p class="font-serif text-body-lg text-muted italic">Kottawa</p>
+          <p class="font-body text-body-md text-muted mt-3">No. 139 Piliyandala Road,<br/>Palanwatta, Pannipitiya</p>
+        </div>
+      </div>
+      <div class="p-6 border-t border-wine/25 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-body-md text-muted text-center sm:text-left">For directions or any travel questions, reach out to us directly &mdash; we're happy to help.</p>
+        <a class="shrink-0 inline-flex items-center gap-2 bg-wine text-white px-5 py-3 rounded-full font-body text-label-caps tracking-widest hover:bg-wine-deep transition-colors whitespace-nowrap" href="https://www.google.com/maps/search/?api=1&amp;query=Summerfields%2C%20139%20Piliyandala%20Road%2C%20Palanwatta%2C%20Pannipitiya" rel="noopener" target="_blank">
+          <span class="material-symbols-outlined text-[18px]">directions</span>
+          Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center px-2 border-t border-wine/30 pt-16 scroll-mt-24" id="rsvp">
+    <h2 class="reveal font-display text-headline-md text-wine-bright mb-6">RSVP &amp; Inquiries</h2>
+    <p class="reveal font-serif text-body-lg text-muted mb-10 italic" style="--reveal-delay:.1s;">We kindly ask you to confirm your presence to share this joyous evening with us.</p>
+
+    <form class="reveal flex flex-col gap-8 text-left" id="rsvp-form" style="--reveal-delay:.2s;">
+      <div>
+        <label class="font-body text-label-caps text-wine-bright tracking-widest uppercase block mb-1" for="rsvp-name">Full Name</label>
+        <input class="field font-body text-body-md" id="rsvp-name" name="name" placeholder="Your name" required type="text"/>
+      </div>
+
+      <div>
+        <span class="font-body text-label-caps text-wine-bright tracking-widest uppercase block mb-2">Will you be attending?</span>
+        <div class="flex flex-wrap gap-3 font-body text-label-caps pills">
+          <input checked="" id="a-yes" name="attending" type="radio" value="Joyfully Accepts"/>
+          <label for="a-yes">Joyfully Accepts</label>
+          <input id="a-maybe" name="attending" type="radio" value="Not Yet Sure"/>
+          <label for="a-maybe">Not Yet Sure</label>
+          <input id="a-no" name="attending" type="radio" value="Regretfully Declines"/>
+          <label for="a-no">Regretfully Declines</label>
+        </div>
+      </div>
+
+      <div>
+        <label class="font-body text-label-caps text-wine-bright tracking-widest uppercase block mb-1" for="rsvp-guests">Guests (incl. you)</label>
+        <div class="flex items-center gap-3">
+          <button aria-label="Decrease guests" class="w-8 h-8 rounded-full border border-wine-bright/45 text-wine-bright flex items-center justify-center hover:bg-wine/25 transition-colors" id="g-minus" type="button">
+            <span class="material-symbols-outlined text-[16px]">remove</span>
+          </button>
+          <input class="stepper w-10 font-body text-body-md" id="rsvp-guests" max="15" min="1" name="guests" type="number" value="1"/>
+          <button aria-label="Increase guests" class="w-8 h-8 rounded-full border border-wine-bright/45 text-wine-bright flex items-center justify-center hover:bg-wine/25 transition-colors" id="g-plus" type="button">
+            <span class="material-symbols-outlined text-[16px]">add</span>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <span class="font-body text-label-caps text-wine-bright tracking-widest uppercase block mb-2">Send your RSVP to</span>
+        <div class="flex flex-wrap gap-3 font-body text-label-caps pills">
+          <input checked="" id="to-malani" name="sendto" type="radio" value="94721460888"/>
+          <label for="to-malani">Malani</label>
+          <input id="to-iminda" name="sendto" type="radio" value="94716108116"/>
+          <label for="to-iminda">Iminda</label>
+        </div>
+      </div>
+
+      <div>
+        <label class="font-body text-label-caps text-wine-bright tracking-widest uppercase block mb-1" for="rsvp-message">Message (optional)</label>
+        <textarea class="field font-body text-body-md resize-none" id="rsvp-message" name="message" placeholder="A note for the couple..." rows="2"></textarea>
+      </div>
+
+      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-wine text-white px-8 py-4 rounded-full font-body text-label-caps tracking-widest uppercase hover:bg-wine-deep transition-colors" type="submit">
+        <span class="material-symbols-outlined text-[18px]">chat</span>
+        Send RSVP via WhatsApp
+      </button>
+      <p class="font-body text-body-md text-muted text-center text-sm -mt-2">This opens WhatsApp with your details pre-filled, ready to send to us.</p>
+    </form>
+
+    <div class="reveal h-px w-16 bg-wine-bright/45 mx-auto my-10"></div>
+
+    <div class="reveal flex flex-col items-center gap-4" style="--reveal-delay:.1s;">
+      <div class="font-body text-label-caps text-wine-bright tracking-widest uppercase">Or reach us directly</div>
+      <div class="flex flex-col items-stretch gap-3 w-full max-w-xs">
+
+        <div class="flex items-center gap-2">
+          <a class="flex-1 flex items-center gap-3 text-cream bg-ink-3 px-5 py-3 rounded-full hover:bg-wine/30 transition-colors" href="tel:+94721460888">
+            <span class="material-symbols-outlined text-wine-bright">call</span>
+            <span class="flex flex-col items-start leading-tight text-left">
+              <span class="font-body text-label-caps text-wine-bright uppercase">Malani</span>
+              <span class="font-body text-body-md">072 146 0888</span>
+            </span>
+          </a>
+          <button class="copy-btn shrink-0 flex items-center justify-center w-12 h-12 text-wine-bright bg-ink-3 rounded-full hover:bg-wine/30 transition-colors" data-phone="0721460888" title="Copy Malani's number" type="button">
+            <span class="material-symbols-outlined text-[20px]">content_copy</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a class="flex-1 flex items-center gap-3 text-cream bg-ink-3 px-5 py-3 rounded-full hover:bg-wine/30 transition-colors" href="tel:+94716108116">
+            <span class="material-symbols-outlined text-wine-bright">call</span>
+            <span class="flex flex-col items-start leading-tight text-left">
+              <span class="font-body text-label-caps text-wine-bright uppercase">Iminda</span>
+              <span class="font-body text-body-md">071 610 8116</span>
+            </span>
+          </a>
+          <button class="copy-btn shrink-0 flex items-center justify-center w-12 h-12 text-wine-bright bg-ink-3 rounded-full hover:bg-wine/30 transition-colors" data-phone="0716108116" title="Copy Iminda's number" type="button">
+            <span class="material-symbols-outlined text-[20px]">content_copy</span>
+          </button>
+        </div>
+
+      </div>
+      <p class="font-serif text-body-md text-muted italic text-center max-w-xs mt-2">Your presence is our greatest gift. Thank you for being part of our story.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Bottom nav -->
+<nav class="md:hidden fixed bottom-0 w-full max-w-[600px] z-40 bg-ink/85 backdrop-blur-lg border-t border-wine/30 flex justify-around items-center h-20 px-4">
+  <a class="bnav flex flex-col items-center text-muted hover:text-wine-bright transition-colors" data-target="hero" href="#hero">
+    <span class="material-symbols-outlined mb-1">auto_stories</span>
+    <span class="font-body text-label-caps text-[10px]">Story</span>
+  </a>
+  <a class="bnav flex flex-col items-center text-muted hover:text-wine-bright transition-colors" data-target="evening" href="#evening">
+    <span class="material-symbols-outlined mb-1">celebration</span>
+    <span class="font-body text-label-caps text-[10px]">Evening</span>
+  </a>
+  <a class="bnav flex flex-col items-center text-muted hover:text-wine-bright transition-colors" data-target="venue" href="#venue">
+    <span class="material-symbols-outlined mb-1">location_on</span>
+    <span class="font-body text-label-caps text-[10px]">Venue</span>
+  </a>
+  <a class="bnav flex flex-col items-center text-muted hover:text-wine-bright transition-colors" data-target="rsvp" href="#rsvp">
+    <span class="material-symbols-outlined mb-1">mail</span>
+    <span class="font-body text-label-caps text-[10px]">RSVP</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast">
+  <div class="flex items-center gap-2 bg-wine text-white px-5 py-3 rounded-full shadow-lg font-body text-label-caps">
+    <span class="material-symbols-outlined text-[18px]">check_circle</span>
+    <span id="toast-text">Copied!</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  function reducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast'), txt = document.getElementById('toast-text');
+    if (!t) return;
+    txt.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  function initReveals() {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window) || reducedMotion()) {
+      els.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target); // reveal once; scrolling back up must not re-hide
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  /* ---------- Cover ---------- */
+  function initCover() {
+    const cover = document.getElementById('cover');
+    const btn = document.getElementById('unlock');
+    const body = document.getElementById('page-body');
+    if (!cover || !btn) { document.body.classList.add('entered'); initReveals(); return; }
+    let opened = false;
+    btn.addEventListener('click', () => {
+      if (opened) return;
+      opened = true;
+      cover.classList.add('dissolve');
+      body.classList.remove('overflow-y-hidden');
+      body.classList.add('entered'); // releases the held hero entrance
+      initReveals();
+      setTimeout(() => { cover.style.display = 'none'; }, 650);
+    });
+  }
+
+  /* ---------- Drawer ---------- */
+  function initDrawer() {
+    const btn = document.getElementById('menu-btn');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+    if (!btn || !drawer || !overlay) return;
+    const open = () => { drawer.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); };
+    const close = () => { drawer.classList.add('-translate-x-full'); overlay.classList.add('hidden'); };
+    btn.addEventListener('click', open);
+    overlay.addEventListener('click', close);
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+
+  /* ---------- Active nav ---------- */
+  function initActiveNav() {
+    const ids = ['hero', 'evening', 'venue', 'rsvp'];
+    const sections = ids.map(i => document.getElementById(i)).filter(Boolean);
+    const links = document.querySelectorAll('.bnav, .nav-link');
+    if (!sections.length) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        links.forEach(l => l.classList.toggle('nav-active', l.dataset.target === e.target.id));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  }
+
+  /* ---------- Countdown ---------- */
+  function initCountdown() {
+    const target = new Date('2026-11-18T17:30:00+05:30').getTime();
+    const el = {
+      d: document.getElementById('cd-d'), h: document.getElementById('cd-h'),
+      m: document.getElementById('cd-m'), s: document.getElementById('cd-s')
+    };
+    if (!el.d) return;
+    const pad = n => String(n).padStart(2, '0');
+    function tick() {
+      const diff = Math.max(0, target - Date.now());
+      el.d.textContent = pad(Math.floor(diff / 86400000));
+      el.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      el.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      el.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ---------- Add to calendar ---------- */
+  function initCalendar() {
+    const btn = document.getElementById('calendar-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const ics = [
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Iminda and Ahinsa//Homecoming//EN',
+        'BEGIN:VEVENT',
+        'UID:' + stamp + '-iminda-ahinsa-homecoming@wedding',
+        'DTSTAMP:' + stamp,
+        // Sri Lanka is UTC+05:30 all year: 5.30 PM local = 12:00Z, 10.30 PM = 17:00Z.
+        'DTSTART:20261118T120000Z',
+        'DTEND:20261118T170000Z',
+        'SUMMARY:Homecoming of Iminda & Ahinsa',
+        'DESCRIPTION:Homecoming celebration from 5.30 PM to 10.30 PM. Venue: Summerfields\\, No. 139 Piliyandala Road\\, Palanwatta\\, Pannipitiya\\, Kottawa.',
+        'LOCATION:Summerfields\\, No. 139 Piliyandala Road\\, Palanwatta\\, Pannipitiya',
+        'STATUS:CONFIRMED',
+        'END:VEVENT', 'END:VCALENDAR'
+      ].join('\r\n');
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Iminda-Ahinsa-Homecoming.ics';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Calendar file downloaded');
+    });
+  }
+
+  /* ---------- Copy phone numbers ---------- */
+  function initCopy() {
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      const number = btn.dataset.phone;
+      if (!number) return;
+      const pretty = number.replace(/^(\d{3})(\d{3})(\d{4})$/, '$1 $2 $3');
+      btn.addEventListener('click', () => {
+        function fallback() {
+          const ta = document.createElement('textarea');
+          ta.value = number;
+          ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); showToast('Phone number copied'); }
+          catch (e) { showToast('Copy failed — ' + pretty); }
+          document.body.removeChild(ta);
+        }
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(number).then(() => showToast('Phone number copied')).catch(fallback);
+        } else { fallback(); }
+      });
+    });
+  }
+
+  /* ---------- Guest stepper ---------- */
+  function initStepper() {
+    const input = document.getElementById('rsvp-guests');
+    const minus = document.getElementById('g-minus');
+    const plus = document.getElementById('g-plus');
+    if (!input || !minus || !plus) return;
+    minus.addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value, 10) || 1) - 1); });
+    plus.addEventListener('click', () => { input.value = Math.min(15, (parseInt(input.value, 10) || 1) + 1); });
+  }
+
+  /* ---------- RSVP via WhatsApp ---------- */
+  function initRsvp() {
+    const form = document.getElementById('rsvp-form');
+    if (!form) return;
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const nameEl = document.getElementById('rsvp-name');
+      const name = nameEl.value.trim();
+      if (!name) { nameEl.focus(); return; }
+      const attending = (form.querySelector('input[name="attending"]:checked') || {}).value || 'Joyfully Accepts';
+      const guests = document.getElementById('rsvp-guests').value || '1';
+      const message = document.getElementById('rsvp-message').value.trim();
+
+      let text = 'Hello! This is ' + name + ', RSVPing for Iminda & Ahinsa\'s homecoming.\n' + attending + '\nGuests: ' + guests;
+      if (message) text += '\nMessage: ' + message;
+
+      const phone = (form.querySelector('input[name="sendto"]:checked') || {}).value || '94721460888';
+      window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      showToast('Opening WhatsApp…');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initCover();
+    initDrawer();
+    initActiveNav();
+    initCountdown();
+    initCalendar();
+    initCopy();
+    initStepper();
+    initRsvp();
+  });
+})();
+</script>
+</body>
+</html>
