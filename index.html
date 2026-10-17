@@ -61,12 +61,12 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.25;
+    opacity: 0.3;
     /* A real dark filter on the photo itself. The scrim below only veils it
        towards flat black; brightness() takes it down while contrast and
        saturate keep the drapery's depth and colour, so it reads deep rather
        than washed out. */
-    filter: brightness(0.6) contrast(1.08) saturate(1.15);
+    filter: brightness(0.75) contrast(1.08) saturate(1.15);
   }
   #page-bg::before {
     content: '';
@@ -75,7 +75,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(4px) brightness(0.6) contrast(1.08) saturate(1.15);
+    filter: blur(2px) brightness(0.75) contrast(1.08) saturate(1.15);
     transform: scale(1.02);
     -webkit-mask-image: linear-gradient(to bottom, transparent 25%, #000 75%);
             mask-image: linear-gradient(to bottom, transparent 25%, #000 75%);
@@ -85,7 +85,7 @@
   #page-bg::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(18,9,9,0.42) 0%, rgba(18,9,9,0.24) 38%, rgba(18,9,9,0.60) 100%);
+    background: linear-gradient(180deg, rgba(18,9,9,0.32) 0%, rgba(18,9,9,0.16) 38%, rgba(18,9,9,0.48) 100%);
   }
 
   /* Deep wine glow pooling behind the page. Fixed, and pinned to the large
