@@ -18,10 +18,12 @@
           // Wine and black. "wine-bright" is the one for small text on the dark
           // ground; "wine" is too dark for anything under 24px.
           "ink": "#120A0C", "ink-2": "#1B1013", "ink-3": "#241619",
-          "wine": "#8E2F3F", "wine-bright": "#C9697A", "wine-deep": "#5E1C27",
-          "cream": "#F4ECE7", "muted": "#B9A8A4"
+          "wine": "#8E2F3F", "wine-bright": "#D77C86", "wine-deep": "#5E1C27",
+          "cream": "#F4ECE7", "muted": "#C6B5B1"
         },
-        borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+        // NB: do not add a "full" key here. Overriding it turns every
+        // rounded-full control into a 12px squircle.
+        borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem" },
         spacing: { "margin-desktop": "80px", "margin-mobile": "24px", "section-gap": "110px" },
         fontFamily: {
           body: ["Inter"], serif: ["Cormorant Garamond"], display: ["Playfair Display"], script: ["Pinyon Script"]
@@ -58,25 +60,31 @@
   }
 
   .panel {
-    background: rgba(255, 255, 255, 0.035);
+    /* A wine-tinted gradient and an inset top highlight, so the cards have
+       body. At a flat 3.5% white they were nearly invisible on the dark ground
+       and the middle of the page read as a void. */
+    background: linear-gradient(160deg, rgba(142, 47, 63, 0.16), rgba(255, 255, 255, 0.03) 58%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(201, 105, 122, 0.22);
+    border: 1px solid rgba(215, 124, 134, 0.3);
+    box-shadow: inset 0 1px 0 rgba(244, 236, 231, 0.08), 0 24px 60px -30px rgba(0, 0, 0, 0.9);
   }
   .vellum { background: radial-gradient(circle at 50% 40%, #241619 0%, #120A0C 75%); }
   .smooth { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 
   /* ---------- Botanical corners ---------- */
+  /* Pinned to the page frame, not inside the text blocks. At the previous size
+     and opacity the vines ran diagonally straight through both names. */
   .corner {
     position: absolute;
-    width: 190px; height: 190px;
+    width: 150px; height: 150px;
     color: #8E2F3F;
-    opacity: 0.55;
+    opacity: 0.3;
     pointer-events: none;
   }
-  @media (min-width: 768px) { .corner { width: 240px; height: 240px; } }
-  .corner-tl { top: -8px; left: -14px; }
-  .corner-br { bottom: -8px; right: -14px; transform: rotate(180deg); }
+  @media (min-width: 768px) { .corner { width: 200px; height: 200px; } }
+  .corner-tl { top: -26px; left: -34px; }
+  .corner-br { bottom: -26px; right: -34px; transform: rotate(180deg); }
 
   /* ---------- Names ---------- */
   .name {
@@ -84,16 +92,16 @@
     position: relative;
     padding-bottom: 0.16em;
     font-family: 'Pinyon Script', cursive;
-    font-size: clamp(3.2rem, 13vw, 5.4rem);
+    font-size: clamp(3.8rem, 15vw, 6rem);
     line-height: 1.16;
     letter-spacing: 0.02em;
     /* A narrow wine highlight sweeping warm ivory type, kept light overall so
        the names never lose contrast against the near-black ground. */
-    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #C9697A 50%, #F4ECE7 58%, #F4ECE7 100%);
+    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #D77C86 50%, #F4ECE7 58%, #F4ECE7 100%);
     background-size: 260% auto;
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 2px 22px rgba(201, 105, 122, 0.3));
+    filter: drop-shadow(0 2px 22px rgba(215, 124, 134, 0.3));
     animation: name-sheen 9s ease-in-out infinite;
   }
   @keyframes name-sheen {
@@ -104,7 +112,7 @@
     content: '';
     position: absolute; left: 50%; bottom: 0;
     height: 1px; width: 0;
-    background: linear-gradient(90deg, transparent, #C9697A 50%, transparent);
+    background: linear-gradient(90deg, transparent, #D77C86 50%, transparent);
     transform: translateX(-50%);
     animation: underline-grow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: var(--u-delay, 1s);
@@ -126,11 +134,11 @@
   .lineage-label {
     font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
     letter-spacing: 0.34em; text-transform: uppercase;
-    color: #C9697A; padding-left: 0.34em;
+    color: #D77C86; padding-left: 0.34em;
   }
   .lineage-name {
     font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
-    font-size: clamp(1.2rem, 4.6vw, 1.6rem); line-height: 1.3; color: #E7D9D4;
+    font-size: clamp(1rem, 3.7vw, 1.25rem); line-height: 1.3; color: #E7D9D4; opacity: .82;
   }
   .invite-line {
     font-family: 'Cormorant Garamond', serif; font-style: italic;
@@ -143,16 +151,16 @@
     gap: 22px; width: min(320px, 80%); margin: 26px auto 22px;
   }
   .amp-row .rule { flex: 1; height: 1px; }
-  .amp-row .rule-l { background: linear-gradient(90deg, transparent, rgba(201, 105, 122, 0.6)); }
-  .amp-row .rule-r { background: linear-gradient(90deg, rgba(201, 105, 122, 0.6), transparent); }
+  .amp-row .rule-l { background: linear-gradient(90deg, transparent, rgba(215, 124, 134, 0.6)); }
+  .amp-row .rule-r { background: linear-gradient(90deg, rgba(215, 124, 134, 0.6), transparent); }
   .amp {
     /* Great Vibes, not Pinyon: its ampersand is a proper flourish, where
        Pinyon's is a small mark. The names stay in Pinyon, whose capital A is
        unambiguous. */
     font-family: 'Great Vibes', cursive;
     font-size: clamp(2.9rem, 10vw, 4.2rem); line-height: 1;
-    color: #C9697A; transform: translateY(-0.08em);
-    filter: drop-shadow(0 2px 14px rgba(201, 105, 122, 0.35));
+    color: #D77C86; transform: translateY(-0.08em);
+    filter: drop-shadow(0 2px 14px rgba(215, 124, 134, 0.35));
   }
 
   /* ---------- Scroll reveal ---------- */
@@ -176,20 +184,25 @@
     /* The Tailwind forms plugin paints inputs white and its selector beats a
        plain class, so this needs !important to stay transparent on the dark ground. */
     background-color: transparent !important;
-    border-bottom: 1px solid rgba(201, 105, 122, 0.4) !important;
+    border-bottom: 1px solid rgba(215, 124, 134, 0.4) !important;
     padding: 10px 2px; transition: border-color .3s ease;
   }
-  .field:focus { border-bottom-color: #C9697A !important; }
-  .field::placeholder { color: rgba(185, 168, 164, 0.6); }
+  .field:focus { border-bottom-color: #D77C86 !important; }
+  .field::placeholder { color: #968684; }
   .stepper {
-    border-bottom: 1px solid rgba(201, 105, 122, 0.4) !important;
-    padding: 2px 0; text-align: center; color: #F4ECE7;
+    /* Matches the +/- button height; at its natural 41px the underline sat
+       5px below them. */
+    height: 32px; padding: 0;
+    border-bottom: 1px solid rgba(215, 124, 134, 0.4) !important;
+    text-align: center; color: #F4ECE7;
     background-color: transparent !important;
   }
+  .pills { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pills label:nth-of-type(3) { grid-column: 1 / -1; }
   .pills input { position: absolute; opacity: 0; pointer-events: none; }
   .pills label {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: 10px 18px; border: 1px solid rgba(201, 105, 122, 0.45);
+    padding: 10px 18px; border: 1px solid rgba(215, 124, 134, 0.45);
     border-radius: 9999px; cursor: pointer; transition: all .25s ease;
     user-select: none; color: #E7D9D4;
   }
@@ -209,7 +222,7 @@
     70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(201,105,122,0); }
     100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(201,105,122,0); }
   }
-  .nav-active { color: #C9697A !important; }
+  .nav-active { color: #D77C86 !important; }
 
   @media (prefers-reduced-motion: reduce) {
     .name { animation: none; }
@@ -225,37 +238,84 @@
 
 <div aria-hidden="true" id="page-glow"></div>
 
+<!-- One pair of botanical corners for the whole page, behind the content -->
+<div aria-hidden="true" class="fixed inset-0 z-[-5] pointer-events-none max-w-[600px] mx-auto" id="page-frame">
+  <svg class="corner corner-tl" viewBox="0 0 240 240"><use href="#vine"/></svg>
+  <svg class="corner corner-br" viewBox="0 0 240 240"><use href="#vine"/></svg>
+</div>
+
 <!-- Botanical motif, defined once and reused in every corner -->
 <svg aria-hidden="true" style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <path d="M0,0 C5,-9 16,-11 22,0 C16,11 5,9 0,0 Z" id="leaf"/>
+    <!-- Botanical corner motif: four leaf blades and a five-petal blossom, reused -->
+    <path id="lf1" d="M0,0 C4,-6.2 12.5,-9.4 22,-0.8 C13,8.6 4.4,6.4 0,0 Z"/>
+    <path id="lf2" d="M0,0 C5.6,-5.6 15.4,-7.6 25,-4.2 C16,5 6,4.8 0,0 Z"/>
+    <path id="lf3" d="M0,0 C3.2,-4.8 9.6,-6.4 15.5,-0.6 C10,5.8 3.2,4.4 0,0 Z"/>
+    <path id="lf4" d="M0,0 C4.8,-2.8 12.6,-3.8 19,-0.5 C12.4,3.8 4.8,3 0,0 Z"/>
+    <g id="blossom" fill="currentColor">
+      <ellipse cx="0" cy="-3.2" rx="1.9" ry="2.6"/><ellipse cx="0" cy="-3.2" rx="1.9" ry="2.6" transform="rotate(72)"/><ellipse cx="0" cy="-3.2" rx="1.9" ry="2.6" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-3.2" rx="1.9" ry="2.6" transform="rotate(216)"/><ellipse cx="0" cy="-3.2" rx="1.9" ry="2.6" transform="rotate(288)"/><circle r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+    </g>
     <g id="vine">
-      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6">
-        <path d="M2,2 C46,24 84,58 104,108 C120,148 152,176 206,198"/>
-        <path d="M2,2 C24,48 54,86 104,108"/>
-        <path d="M30,16 C44,44 44,70 34,96"/>
-        <path d="M16,34 C46,52 72,74 90,104"/>
+      <g fill="none" stroke="currentColor" stroke-linecap="round">
+        <path stroke-width="1.9" d="M2,7 C44,33 67,76 76,124"/>
+        <path stroke-width="1.3" d="M76,124 C82,158 98,184 128,206"/>
+        <path stroke-width="1.7" d="M7,2 C54,17 105,23 153,21"/>
+        <path stroke-width="1.0" d="M153,21 C180,20 201,26 217,41"/>
+        <path stroke-width="1.5" d="M3,13 C15,57 22,104 15,150"/>
+        <path stroke-width="1.0" d="M15,150 C13,175 17,194 29,212"/>
+        <path stroke-width="1.3" d="M12,18 C56,45 97,73 133,95"/>
+        <path stroke-width="1.2" d="M36,29 C60,57 61,87 45,111"/>
+        <path stroke-width="1.0" d="M88,63 C114,71 127,93 122,119"/>
+        <path stroke-width="1.0" d="M2,38 C23,46 33,64 28,86"/>
+        <path stroke-width="0.9" d="M133,95 C153,109 165,130 167,155"/>
+        <path stroke-width="0.9" d="M45,111 C52,134 50,158 38,180"/>
+        <path stroke-width="1.1" d="M5,5 C41,14 67,31 85,53"/>
+        <path stroke-width="0.9" d="M6,45 C1,63 4,81 15,97"/>
       </g>
       <g fill="currentColor">
-        <use href="#leaf" transform="translate(26,14) rotate(26) scale(.82)"/>
-        <use href="#leaf" transform="translate(20,40) rotate(118) scale(.74)"/>
-        <use href="#leaf" transform="translate(48,34) rotate(34) scale(.9)"/>
-        <use href="#leaf" transform="translate(38,66) rotate(126) scale(.8)"/>
-        <use href="#leaf" transform="translate(70,58) rotate(42) scale(.95)"/>
-        <use href="#leaf" transform="translate(56,92) rotate(134) scale(.78)"/>
-        <use href="#leaf" transform="translate(92,86) rotate(48) scale(.88)"/>
-        <use href="#leaf" transform="translate(78,116) rotate(140) scale(.72)"/>
-        <use href="#leaf" transform="translate(114,116) rotate(52) scale(.84)"/>
-        <use href="#leaf" transform="translate(104,146) rotate(146) scale(.7)"/>
-        <use href="#leaf" transform="translate(140,146) rotate(44) scale(.8)"/>
-        <use href="#leaf" transform="translate(132,174) rotate(150) scale(.66)"/>
-        <use href="#leaf" transform="translate(168,172) rotate(40) scale(.74)"/>
-        <use href="#leaf" transform="translate(186,190) rotate(126) scale(.62)"/>
-        <circle cx="40" cy="22" r="2.6"/><circle cx="30" cy="54" r="2.2"/>
-        <circle cx="64" cy="48" r="2.4"/><circle cx="88" cy="74" r="2.6"/>
-        <circle cx="72" cy="104" r="2.2"/><circle cx="120" cy="104" r="2.4"/>
-        <circle cx="110" cy="134" r="2"/><circle cx="152" cy="136" r="2.4"/>
-        <circle cx="146" cy="164" r="2"/><circle cx="182" cy="162" r="2.2"/>
+        <use href="#lf1" transform="translate(19.2,19) rotate(103.6) scale(0.61)"/><use href="#lf2" transform="translate(33.6,33.9) rotate(-19.3) scale(0.67)"/>
+        <use href="#lf3" transform="translate(46.5,47.8) rotate(104.2) scale(0.8)"/><use href="#lf4" transform="translate(55.9,65.8) rotate(1.5) scale(0.78)"/>
+        <use href="#lf1" transform="translate(65.4,84.1) rotate(123) scale(0.79)"/><use href="#lf2" transform="translate(71.2,104.4) rotate(21.8) scale(0.79)"/>
+        <use href="#lf3" transform="translate(76.3,125.1) rotate(124.5) scale(0.73)"/><use href="#lf4" transform="translate(77,130.8) rotate(27.6) scale(0.64)"/>
+        <use href="#lf1" transform="translate(83.3,151.2) rotate(127.9) scale(0.62)"/><use href="#lf2" transform="translate(94.3,170.7) rotate(15.8) scale(0.58)"/>
+        <use href="#lf3" transform="translate(107.3,188) rotate(108.6) scale(0.51)"/><use href="#lf4" transform="translate(124,204.2) rotate(-4.8) scale(0.37)"/>
+        <use href="#lf3" transform="translate(23.6,6.4) rotate(-42.3) scale(0.65)"/><use href="#lf4" transform="translate(44.7,12.2) rotate(78) scale(0.67)"/>
+        <use href="#lf1" transform="translate(66,16) rotate(-40) scale(0.68)"/><use href="#lf2" transform="translate(87.8,18.4) rotate(54.8) scale(0.76)"/>
+        <use href="#lf3" transform="translate(111,20.5) rotate(-65.5) scale(0.67)"/><use href="#lf4" transform="translate(132.6,21.7) rotate(67.2) scale(0.64)"/>
+        <use href="#lf1" transform="translate(152.4,21.3) rotate(-62.5) scale(0.58)"/><use href="#lf2" transform="translate(159,20.3) rotate(53.3) scale(0.49)"/>
+        <use href="#lf3" transform="translate(189.6,24.8) rotate(-40.2) scale(0.41)"/><use href="#lf4" transform="translate(215,39.2) rotate(85.9) scale(0.32)"/>
+        <use href="#lf1" transform="translate(6.4,27.9) rotate(123.9) scale(0.58)"/><use href="#lf2" transform="translate(11.4,49) rotate(22.7) scale(0.7)"/>
+        <use href="#lf3" transform="translate(15,69.8) rotate(141.3) scale(0.73)"/><use href="#lf4" transform="translate(17.8,89.9) rotate(27) scale(0.73)"/>
+        <use href="#lf1" transform="translate(18.3,108.4) rotate(161.8) scale(0.71)"/><use href="#lf2" transform="translate(17.5,128.7) rotate(19.9) scale(0.67)"/>
+        <use href="#lf3" transform="translate(15.6,150.6) rotate(147.9) scale(0.51)"/><use href="#lf4" transform="translate(15.4,156.5) rotate(43.6) scale(0.46)"/>
+        <use href="#lf1" transform="translate(17.7,183.4) rotate(132.8) scale(0.41)"/><use href="#lf4" transform="translate(26.8,207.5) rotate(2) scale(0.35)"/>
+        <use href="#lf3" transform="translate(36.9,35.1) rotate(-24) scale(0.55)"/><use href="#lf4" transform="translate(58.9,46.7) rotate(93.4) scale(0.62)"/>
+        <use href="#lf1" transform="translate(77,59.1) rotate(-35.4) scale(0.65)"/><use href="#lf2" transform="translate(96.5,73.1) rotate(95.4) scale(0.57)"/>
+        <use href="#lf3" transform="translate(116,84.7) rotate(-33.2) scale(0.56)"/><use href="#lf4" transform="translate(132.1,94.9) rotate(95.2) scale(0.44)"/>
+        <use href="#lf2" transform="translate(48.4,46.5) rotate(5.5) scale(0.59)"/><use href="#lf3" transform="translate(53.9,61.5) rotate(131.4) scale(0.64)"/>
+        <use href="#lf4" transform="translate(56.4,79.5) rotate(39.4) scale(0.59)"/><use href="#lf1" transform="translate(53.5,94.1) rotate(176.2) scale(0.53)"/>
+        <use href="#lf2" transform="translate(45.2,109.4) rotate(58.9) scale(0.41)"/><use href="#lf1" transform="translate(99.2,67.6) rotate(-22.3) scale(0.45)"/>
+        <use href="#lf2" transform="translate(118.7,87) rotate(113.2) scale(0.4)"/><use href="#lf4" transform="translate(123.3,114.5) rotate(50.6) scale(0.28)"/>
+        <use href="#lf4" transform="translate(12.6,44) rotate(-17.3) scale(0.45)"/><use href="#lf1" transform="translate(22,52.7) rotate(120.3) scale(0.45)"/>
+        <use href="#lf4" transform="translate(28.8,65.7) rotate(29.5) scale(0.37)"/><use href="#lf3" transform="translate(28,81.4) rotate(164.1) scale(0.32)"/>
+        <use href="#lf3" transform="translate(142.4,101.9) rotate(-11.7) scale(0.41)"/><use href="#lf3" transform="translate(157.7,122.7) rotate(108.6) scale(0.35)"/>
+        <use href="#lf4" transform="translate(165.6,150.1) rotate(13.5) scale(0.27)"/><use href="#lf2" transform="translate(46.7,122.1) rotate(129.4) scale(0.43)"/>
+        <use href="#lf3" transform="translate(47.9,150.2) rotate(52.4) scale(0.43)"/><use href="#lf4" transform="translate(40.8,176.1) rotate(180.9) scale(0.27)"/>
+        <use href="#lf1" transform="translate(23.4,11.7) rotate(-26.6) scale(0.5)"/><use href="#lf2" transform="translate(40.7,19) rotate(84.9) scale(0.55)"/>
+        <use href="#lf3" transform="translate(56.1,27.6) rotate(-17) scale(0.49)"/><use href="#lf4" transform="translate(70.9,38.3) rotate(93.9) scale(0.52)"/>
+        <use href="#lf1" transform="translate(82.7,50) rotate(-19.1) scale(0.42)"/><use href="#lf4" transform="translate(4,55.2) rotate(24.9) scale(0.45)"/>
+        <use href="#lf1" transform="translate(5,73.8) rotate(146.9) scale(0.42)"/><use href="#lf4" transform="translate(13.7,93.7) rotate(2.8) scale(0.32)"/>
+        <circle cx="37.7" cy="43.1" r="2.4"/><circle cx="34.7" cy="46" r="1.7"/><circle cx="96.7" cy="169.4" r="1.7"/><circle cx="100.2" cy="166.4" r="1.5"/>
+        <circle cx="127.1" cy="205.3" r="1.5"/><circle cx="70.3" cy="19.8" r="2.3"/><circle cx="69.4" cy="23.9" r="1.7"/><circle cx="216.5" cy="40.6" r="1.5"/>
+        <circle cx="16.3" cy="58.2" r="2.4"/><circle cx="19.8" cy="58.2" r="1.7"/><circle cx="28.6" cy="211.5" r="1.5"/><circle cx="68.9" cy="57.9" r="2.2"/>
+        <circle cx="66.2" cy="60.4" r="1.6"/><circle cx="57.6" cy="64.1" r="2.3"/><circle cx="60.9" cy="62.5" r="1.6"/><circle cx="122.1" cy="118.2" r="1.7"/>
+        <circle cx="28.7" cy="57.4" r="2.4"/><circle cx="31.3" cy="56.5" r="1.7"/><circle cx="166.9" cy="154.3" r="1.5"/><circle cx="44" cy="154.9" r="1.9"/>
+        <circle cx="39.4" cy="155.1" r="1.5"/><circle cx="51.6" cy="27.8" r="2.4"/><circle cx="49.3" cy="31.5" r="1.7"/><circle cx="14.7" cy="96.5" r="2.1"/>
+        <use href="#blossom" transform="translate(42.6,5.9) rotate(-7.8) scale(0.82)"/>
+        <use href="#blossom" transform="translate(21.3,77.4) rotate(-16.3) scale(0.76)"/>
+        <use href="#blossom" transform="translate(46.8,95.6) rotate(23.1) scale(0.62)"/>
+        <use href="#blossom" transform="translate(33.2,8.5) rotate(-7.1) scale(0.6)"/>
       </g>
     </g>
   </defs>
@@ -304,9 +364,6 @@
   <!-- Hero -->
   <section class="min-h-[85vh] flex flex-col justify-center relative mt-0 md:mt-10 scroll-mt-24" id="hero">
     <div class="relative py-6">
-      <svg class="corner corner-tl" viewBox="0 0 240 240"><use href="#vine"/></svg>
-      <svg class="corner corner-br" viewBox="0 0 240 240"><use href="#vine"/></svg>
-
       <div class="relative z-10 flex items-center justify-center gap-3">
         <span class="h-px w-6 bg-wine-bright/55"></span>
         <span class="font-body text-label-caps text-wine-bright tracking-[0.3em] uppercase">With Joyful Hearts</span>
@@ -387,11 +444,8 @@
 
     <!-- The evening -->
     <div class="reveal lift panel p-10 rounded-3xl flex flex-col items-center text-center relative overflow-hidden scroll-mt-24" id="evening">
-      <div class="absolute top-0 right-0 p-6 opacity-20">
-        <span class="material-symbols-outlined text-wine-bright text-6xl">celebration</span>
-      </div>
       <h2 class="font-display text-headline-md text-wine-bright mb-4">Homecoming</h2>
-      <div class="font-display text-display-lg text-cream mb-4">5:30 PM</div>
+      <div class="font-display text-display-lg text-cream mb-4">5.30 PM</div>
       <div class="inline-flex items-center gap-2 bg-wine/30 text-cream px-5 py-2 rounded-full font-body text-label-caps border border-wine-bright/35">
         <span class="material-symbols-outlined text-[16px]">schedule</span>
         <span class="tracking-wider">Celebrations until 10.30 PM</span>
@@ -402,7 +456,6 @@
     <!-- Venue -->
     <div class="reveal lift panel rounded-3xl overflow-hidden relative scroll-mt-24" id="venue">
       <div class="p-10 text-center relative">
-        <svg class="corner corner-tl" viewBox="0 0 240 240" style="opacity:.35"><use href="#vine"/></svg>
         <div class="relative z-10">
           <div class="font-body text-label-caps text-wine-bright tracking-widest uppercase mb-3">The Venue</div>
           <h2 class="font-display text-headline-md text-cream mb-2">Summerfields</h2>
