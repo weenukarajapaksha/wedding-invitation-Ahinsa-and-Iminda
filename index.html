@@ -271,7 +271,11 @@
     border-radius: 9999px; cursor: pointer; transition: all .25s ease;
     user-select: none; color: #E8D8D2;
   }
-  .pills input:checked + label { background: #9C2A26; border-color: #9C2A26; color: #fff; }
+  .pills input:checked + label {
+    background: rgba(156, 42, 38, 0.3);
+    border-color: rgba(224, 130, 121, 0.35);
+    color: #F4ECE7;
+  }
 
   .toast {
     position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
@@ -513,7 +517,7 @@
         </div>
       </div>
 
-      <button class="w-full flex items-center justify-center gap-2 border border-wine-bright/50 text-wine-bright px-5 py-3 rounded-full font-body text-label-caps tracking-widest uppercase hover:bg-wine/25 transition-colors" id="calendar-btn" type="button">
+      <button class="w-full flex items-center justify-center gap-2 bg-wine/30 border border-wine-bright/35 text-cream px-5 py-3 rounded-full font-body text-label-caps tracking-widest uppercase hover:bg-wine/50 transition-colors" id="calendar-btn" type="button">
         <span class="material-symbols-outlined text-[18px]">event_available</span>
         Add to Calendar
       </button>
@@ -555,7 +559,7 @@
       </div>
       <div class="p-6 border-t border-wine/25 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="font-body text-body-md text-muted text-center sm:text-left">For directions or any travel questions, reach out to us directly &mdash; we're happy to help.</p>
-        <a class="shrink-0 inline-flex items-center gap-2 bg-wine text-white px-5 py-3 rounded-full font-body text-label-caps tracking-widest hover:bg-wine-deep transition-colors whitespace-nowrap" href="https://www.google.com/maps/search/?api=1&amp;query=Summerfields%2C%20139%20Piliyandala%20Road%2C%20Palanwatta%2C%20Pannipitiya" rel="noopener" target="_blank">
+        <a class="shrink-0 inline-flex items-center gap-2 bg-wine/30 border border-wine-bright/35 text-cream px-5 py-3 rounded-full font-body text-label-caps tracking-widest hover:bg-wine/50 transition-colors whitespace-nowrap" href="https://www.google.com/maps/search/?api=1&amp;query=Summerfields%2C%20139%20Piliyandala%20Road%2C%20Palanwatta%2C%20Pannipitiya" rel="noopener" target="_blank">
           <span class="material-symbols-outlined text-[18px]">directions</span>
           Get Directions
         </a>
@@ -592,11 +596,11 @@
       <div>
         <label class="font-body text-label-caps text-wine-bright tracking-widest uppercase block mb-1" for="rsvp-guests">Guests (incl. you)</label>
         <div class="flex items-center gap-3">
-          <button aria-label="Decrease guests" class="w-8 h-8 rounded-full border border-wine-bright/45 text-wine-bright flex items-center justify-center hover:bg-wine/25 transition-colors" id="g-minus" type="button">
+          <button aria-label="Decrease guests" class="w-8 h-8 rounded-full bg-wine/30 border border-wine-bright/35 text-cream flex items-center justify-center hover:bg-wine/50 transition-colors" id="g-minus" type="button">
             <span class="material-symbols-outlined text-[16px]">remove</span>
           </button>
           <input class="stepper w-10 font-body text-body-md" id="rsvp-guests" max="15" min="1" name="guests" type="number" value="1"/>
-          <button aria-label="Increase guests" class="w-8 h-8 rounded-full border border-wine-bright/45 text-wine-bright flex items-center justify-center hover:bg-wine/25 transition-colors" id="g-plus" type="button">
+          <button aria-label="Increase guests" class="w-8 h-8 rounded-full bg-wine/30 border border-wine-bright/35 text-cream flex items-center justify-center hover:bg-wine/50 transition-colors" id="g-plus" type="button">
             <span class="material-symbols-outlined text-[16px]">add</span>
           </button>
         </div>
@@ -617,7 +621,7 @@
         <textarea class="field font-body text-body-md resize-none" id="rsvp-message" name="message" placeholder="A note for the couple..." rows="2"></textarea>
       </div>
 
-      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-wine text-white px-8 py-4 rounded-full font-body text-label-caps tracking-widest uppercase hover:bg-wine-deep transition-colors" type="submit">
+      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-wine/30 border border-wine-bright/35 text-cream px-8 py-4 rounded-full font-body text-label-caps tracking-widest uppercase hover:bg-wine/50 transition-colors" type="submit">
         <span class="material-symbols-outlined text-[18px]">chat</span>
         Send RSVP via WhatsApp
       </button>
@@ -631,27 +635,27 @@
       <div class="flex flex-col items-stretch gap-3 w-full max-w-xs">
 
         <div class="flex items-center gap-2">
-          <a class="flex-1 flex items-center gap-3 text-cream bg-ink-3 px-5 py-3 rounded-full hover:bg-wine/30 transition-colors" href="tel:+94721460888">
+          <a class="flex-1 flex items-center gap-3 text-cream bg-wine/30 border border-wine-bright/35 px-5 py-3 rounded-full hover:bg-wine/50 transition-colors" href="tel:+94721460888">
             <span class="material-symbols-outlined text-wine-bright">call</span>
             <span class="flex flex-col items-start leading-tight text-left">
               <span class="font-body text-label-caps text-wine-bright uppercase">Malani</span>
               <span class="font-body text-body-md">072 146 0888</span>
             </span>
           </a>
-          <button class="copy-btn shrink-0 flex items-center justify-center w-12 h-12 text-wine-bright bg-ink-3 rounded-full hover:bg-wine/30 transition-colors" data-phone="0721460888" title="Copy Malani's number" type="button">
+          <button class="copy-btn shrink-0 flex items-center justify-center w-12 h-12 text-cream bg-wine/30 border border-wine-bright/35 rounded-full hover:bg-wine/50 transition-colors" data-phone="0721460888" title="Copy Malani's number" type="button">
             <span class="material-symbols-outlined text-[20px]">content_copy</span>
           </button>
         </div>
 
         <div class="flex items-center gap-2">
-          <a class="flex-1 flex items-center gap-3 text-cream bg-ink-3 px-5 py-3 rounded-full hover:bg-wine/30 transition-colors" href="tel:+94716108116">
+          <a class="flex-1 flex items-center gap-3 text-cream bg-wine/30 border border-wine-bright/35 px-5 py-3 rounded-full hover:bg-wine/50 transition-colors" href="tel:+94716108116">
             <span class="material-symbols-outlined text-wine-bright">call</span>
             <span class="flex flex-col items-start leading-tight text-left">
               <span class="font-body text-label-caps text-wine-bright uppercase">Iminda</span>
               <span class="font-body text-body-md">071 610 8116</span>
             </span>
           </a>
-          <button class="copy-btn shrink-0 flex items-center justify-center w-12 h-12 text-wine-bright bg-ink-3 rounded-full hover:bg-wine/30 transition-colors" data-phone="0716108116" title="Copy Iminda's number" type="button">
+          <button class="copy-btn shrink-0 flex items-center justify-center w-12 h-12 text-cream bg-wine/30 border border-wine-bright/35 rounded-full hover:bg-wine/50 transition-colors" data-phone="0716108116" title="Copy Iminda's number" type="button">
             <span class="material-symbols-outlined text-[20px]">content_copy</span>
           </button>
         </div>
