@@ -68,6 +68,18 @@
        than washed out. */
     filter: brightness(0.6) contrast(1.08) saturate(1.15);
   }
+  #page-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url('assets/page-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(4px) brightness(0.6) contrast(1.08) saturate(1.15);
+    transform: scale(1.02);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 25%, #000 75%);
+            mask-image: linear-gradient(to bottom, transparent 25%, #000 75%);
+  }
   /* Keeps the type legible over the photo's brighter areas, the chandelier and
      the window, without washing the picture out everywhere. */
   #page-bg::after {
