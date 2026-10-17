@@ -172,7 +172,10 @@
   input, textarea, select { box-shadow: none !important; border: none !important; }
   input:focus, textarea:focus, select:focus { box-shadow: none !important; outline: none !important; }
   .field {
-    width: 100%; background: transparent; color: #F4ECE7;
+    width: 100%; color: #F4ECE7;
+    /* The Tailwind forms plugin paints inputs white and its selector beats a
+       plain class, so this needs !important to stay transparent on the dark ground. */
+    background-color: transparent !important;
     border-bottom: 1px solid rgba(201, 105, 122, 0.4) !important;
     padding: 10px 2px; transition: border-color .3s ease;
   }
@@ -180,7 +183,8 @@
   .field::placeholder { color: rgba(185, 168, 164, 0.6); }
   .stepper {
     border-bottom: 1px solid rgba(201, 105, 122, 0.4) !important;
-    padding: 2px 0; text-align: center; background: transparent; color: #F4ECE7;
+    padding: 2px 0; text-align: center; color: #F4ECE7;
+    background-color: transparent !important;
   }
   .pills input { position: absolute; opacity: 0; pointer-events: none; }
   .pills label {
