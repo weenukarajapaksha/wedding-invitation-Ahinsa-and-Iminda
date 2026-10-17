@@ -44,6 +44,33 @@
   html, body { overflow-x: hidden; }
   body { min-height: max(884px, 100dvh); background: #120909; }
 
+  /* Photographic backdrop, scoped to the centred page column like the glow
+     above it. Height is pinned to the LARGE viewport, not stretched between top
+     and bottom: on a phone the address bar collapses as you scroll, and a layer
+     that tracks it gets re-scaled by background-size: cover, which reads as the
+     background drifting. */
+  #page-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%; max-width: 600px; margin: 0 auto;
+    height: 100vh;
+    height: 100lvh;
+    z-index: -10;
+    pointer-events: none;
+    background-image: url('assets/page-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.55;
+  }
+  /* Keeps the type legible over the photo's brighter areas, the chandelier and
+     the window, without washing the picture out everywhere. */
+  #page-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(18,9,9,0.55) 0%, rgba(18,9,9,0.3) 38%, rgba(18,9,9,0.72) 100%);
+  }
+
   /* Deep wine glow pooling behind the page. Fixed, and pinned to the large
      viewport height so a collapsing mobile address bar cannot rescale it. */
   #page-glow {
@@ -236,6 +263,7 @@
 </head>
 <body class="bg-ink text-cream antialiased overflow-x-hidden overflow-y-hidden max-w-[600px] mx-auto relative" id="page-body">
 
+<div aria-hidden="true" id="page-bg"></div>
 <div aria-hidden="true" id="page-glow"></div>
 
 <!-- One pair of botanical corners for the whole page, behind the content -->

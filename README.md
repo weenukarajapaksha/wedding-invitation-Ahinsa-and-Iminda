@@ -31,14 +31,19 @@ Wine red and black, per the client's request. The tokens are in the
 
 | Token | Hex | Use for |
 |---|---|---|
-| `ink` / `ink-2` / `ink-3` | `#120A0C` / `#1B1013` / `#241619` | Grounds, all wine-tinted near-blacks |
-| `wine` | `#8E2F3F` | Button fills and large blocks, never small text |
-| `wine-bright` | `#D77C86` | Small caps labels and accents |
-| `wine-deep` | `#5E1C27` | Hover states |
+| `ink` / `ink-2` / `ink-3` | `#120909` / `#1B0F0E` / `#241413` | Grounds, all red-tinted near-blacks |
+| `wine` | `#9C2A26` | Button fills and large blocks, never small text |
+| `wine-bright` | `#E08279` | Small caps labels and accents |
+| `wine-deep` | `#6B1714` | Hover states |
 | `cream` | `#F4ECE7` | Primary text |
-| `muted` | `#C6B5B1` | Secondary text |
+| `muted` | `#C8B4AE` | Secondary text |
 
-`wine-bright` is `#D77C86` rather than a deeper wine for a measured reason. The
+Every hue sits at 0 to 5 degrees, i.e. true red. An earlier version sat at
+345 to 353 degrees and read visibly purple. The giveaway is the blue channel:
+when blue exceeds green the colour swings towards magenta however dark it is.
+Keep blue at or below green in any replacement.
+
+`wine-bright` is light rather than a deep red for a measured reason. The
 page has a wine glow (`#page-glow`) at 42% opacity lifting the background behind
 the hero labels and the card headers. At a deeper accent, 12px uppercase labels
 landed at 4.05:1 on the bare glow and 3.69:1 where the glow sits under a panel,
