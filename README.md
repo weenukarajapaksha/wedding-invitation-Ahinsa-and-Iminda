@@ -54,6 +54,51 @@ contrast script if you change either the accent or the glow opacity.
 The placeholder colour is set explicitly rather than as a transparent `muted`,
 because `muted` at 60% computed to 3.71:1.
 
+## The backdrop photo
+
+`assets/page-background.jpg` (615x923) sits behind the page as `#page-bg`,
+scoped to the same centred 600px column as everything else, at `opacity: 0.55`.
+That is the one number to change if you want it stronger or quieter.
+
+Its height is pinned with `100lvh` rather than stretched between top and
+bottom. On a phone the address bar collapses as you scroll, which changes the
+viewport height, and a layer that tracks it gets re-scaled by
+`background-size: cover` — which reads as the background drifting.
+
+Two things follow from the photo being fixed rather than scrolling. Its bright
+chandelier and window sit mid-screen at every scroll position, so anything with
+thin outlines placed there loses definition. That is why `#page-bg::after`
+carries a vertical scrim, and why the RSVP section sits on a `.panel` like the
+cards above it rather than directly on the photo.
+
+The photo sits at 0.55 and `#page-bg::after` carries a vertical scrim over it
+(0.68 at the top, 0.47 in the middle, 0.83 at the foot). Darken the page by
+raising those scrim values rather than by lowering the photo opacity: dropping
+the opacity blends the picture towards the near-black page colour and flattens
+it, where the scrim keeps its depth.
+
+Measured against the brightest patch behind each text block: names 13.1:1,
+small caps labels 5.4:1, the invitation line 6.1:1. All clear their thresholds.
+The invitation line is the one to watch, since it falls over the lighter floor
+of the photo — re-measure if you lighten the scrim.
+
+## The venue photo
+
+`assets/venue.jpg` heads the venue card. The original was 2000x1250 and
+711 KB, which is heavy for a page shared over mobile data, so it is resampled to
+1200x750 at quality 0.82 — 128 KB, still ample for a 600px column on a
+high-density screen. Replace it at a similar size.
+
+It was shot at blue hour, and that sky is the one colour on the page that fights
+the wine palette, so the overlay is a wine-tinted gradient rather than a plain
+black one. It does two jobs: it pulls the sky towards the theme, and it holds
+the caption legible over the brightly lit facade.
+
+The "The Venue" label is cream, not the wine accent. Measured against the
+brightest patch behind it, the accent reached only 4.1:1 even with the scrim
+strengthened, where cream reaches 9.7:1. The heading sits at 13.3:1. If you
+swap the photo, re-measure rather than assuming.
+
 ## Motion
 
 - **The hero entrance waits for the cover.** The lineage lines, names and
@@ -62,6 +107,12 @@ because `muted` at 60% computed to 3.71:1.
   otherwise the entrance plays unseen behind the overlay.
 - **Sections reveal on scroll.** Add `reveal` to any block; `--reveal-delay`
   staggers siblings. Reveals fire once, so scrolling back never re-hides them.
+- **Hearts drift up behind the names.** Eight `.heart` spans in the hero, each
+  with its own `--x`, `--size`, `--hue`, `--peak`, `--drift`, `--rise`,
+  `--dur` and `--delay`, so no two follow the same path. The sideways
+  `--drift` is what makes them read as blown rather than simply rising. They
+  carry a soft glow because the backdrop photo is busy and without it they
+  vanish into the drapery. They sit at `z-0`, under every text layer.
 - **Reduced motion is respected** throughout.
 
 Note that scroll reveals cannot be verified with `chrome --headless --dump-dom`.

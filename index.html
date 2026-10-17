@@ -68,7 +68,7 @@
   #page-bg::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(18,9,9,0.55) 0%, rgba(18,9,9,0.3) 38%, rgba(18,9,9,0.72) 100%);
+    background: linear-gradient(180deg, rgba(18,9,9,0.68) 0%, rgba(18,9,9,0.47) 38%, rgba(18,9,9,0.83) 100%);
   }
 
   /* Deep wine glow pooling behind the page. Fixed, and pinned to the large
@@ -190,6 +190,39 @@
     filter: drop-shadow(0 2px 14px rgba(224, 130, 121, 0.35));
   }
 
+  /* ---------- Drifting hearts ----------
+     Small hearts that bud at the foot of the names, sway sideways as they rise
+     and fade out. The sway is what makes them read as blown rather than simply
+     floating. Each is given its own --x, --size, --drift, --dur and --delay so
+     no two travel the same path. */
+  .heart {
+    position: absolute;
+    bottom: 0;
+    left: var(--x, 50%);
+    color: var(--hue, #E08279);
+    font-size: var(--size, 16px);
+    opacity: 0;
+    animation: heart-blow var(--dur, 10s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    font-variation-settings: 'FILL' 1, 'wght' 300;
+    /* The backdrop photo is busy, so a soft glow separates each heart from the
+       drapery behind it. Without this they disappear into the folds. */
+    filter: drop-shadow(0 0 7px rgba(224, 130, 121, 0.55));
+    will-change: transform, opacity;
+  }
+  @keyframes heart-blow {
+    0%   { opacity: 0;
+           transform: translate(0, 0) scale(0.25) rotate(0deg); }
+    12%  { opacity: var(--peak, 0.8);
+           transform: translate(calc(var(--drift, 14px) * 0.25), calc(var(--rise, 420px) * -0.12)) scale(1) rotate(-7deg); }
+    46%  { opacity: calc(var(--peak, 0.8) * 0.9);
+           transform: translate(calc(var(--drift, 14px) * -0.75), calc(var(--rise, 420px) * -0.46)) scale(1.05) rotate(7deg); }
+    76%  { opacity: calc(var(--peak, 0.8) * 0.5);
+           transform: translate(var(--drift, 14px), calc(var(--rise, 420px) * -0.76)) scale(1.08) rotate(-5deg); }
+    100% { opacity: 0;
+           transform: translate(calc(var(--drift, 14px) * 0.4), calc(var(--rise, 420px) * -1)) scale(0.85) rotate(0deg); }
+  }
+
   /* ---------- Scroll reveal ---------- */
   .reveal {
     opacity: 0; transform: translateY(26px);
@@ -258,6 +291,7 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     .lift:hover { transform: none; }
     .ring { animation: none; }
+    .heart { display: none; } /* purely decorative, so remove it entirely */
   }
 </style>
 </head>
@@ -392,6 +426,19 @@
   <!-- Hero -->
   <section class="min-h-[85vh] flex flex-col justify-center relative mt-0 md:mt-10 scroll-mt-24" id="hero">
     <div class="relative py-6">
+      <!-- Hearts drift up behind the names. z-0 keeps them under every text
+           layer, which all sit at z-10. -->
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-visible z-0">
+        <span class="material-symbols-outlined heart" style="--x:7%;  --size:17px; --hue:#F0A49B; --peak:.85; --dur:12s;   --delay:0s;   --drift:18px; --rise:430px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:21%; --size:13px; --hue:#E08279; --peak:.9;  --dur:10s;   --delay:1.7s; --drift:-15px; --rise:380px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:34%; --size:20px; --hue:#D95F55; --peak:.78; --dur:13.5s; --delay:3.4s; --drift:22px; --rise:470px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:47%; --size:15px; --hue:#F0A49B; --peak:.88; --dur:11s;   --delay:5.1s; --drift:-19px; --rise:410px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:61%; --size:18px; --hue:#E08279; --peak:.82; --dur:12.5s; --delay:2.3s; --drift:17px; --rise:450px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:74%; --size:14px; --hue:#F0A49B; --peak:.9;  --dur:9.5s;  --delay:6.2s; --drift:-21px; --rise:370px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:86%; --size:19px; --hue:#D95F55; --peak:.76; --dur:14s;   --delay:4.1s; --drift:20px; --rise:490px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:94%; --size:12px; --hue:#E08279; --peak:.92; --dur:10.5s; --delay:7.6s; --drift:-14px; --rise:350px;">favorite</span>
+      </div>
+
       <div class="relative z-10 flex items-center justify-center gap-3">
         <span class="h-px w-6 bg-wine-bright/55"></span>
         <span class="font-body text-label-caps text-wine-bright tracking-[0.3em] uppercase">With Joyful Hearts</span>
@@ -483,13 +530,23 @@
 
     <!-- Venue -->
     <div class="reveal lift panel rounded-3xl overflow-hidden relative scroll-mt-24" id="venue">
-      <div class="p-10 text-center relative">
-        <div class="relative z-10">
-          <div class="font-body text-label-caps text-wine-bright tracking-widest uppercase mb-3">The Venue</div>
-          <h2 class="font-display text-headline-md text-cream mb-2">Summerfields</h2>
-          <p class="font-serif text-body-lg text-muted italic">Kottawa</p>
-          <p class="font-body text-body-md text-muted mt-3">No. 139 Piliyandala Road,<br/>Palanwatta, Pannipitiya</p>
+      <!-- Photo header. The venue was shot at blue hour, and that sky is the one
+           colour on the page that fights the wine palette, so a wine-tinted
+           scrim both ties it in and keeps the caption legible over the lit
+           facade. -->
+      <div class="relative h-[240px] md:h-[300px]">
+        <img alt="Summerfields, Kottawa, lit at dusk" class="w-full h-full object-cover" src="assets/venue.jpg"/>
+        <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(107,23,20,0.46) 0%, rgba(156,42,38,0.42) 30%, rgba(18,9,9,0.88) 58%, rgba(18,9,9,0.97) 100%);"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-7">
+          <!-- Cream, not the wine accent: over the lit facade the accent only
+               reached 4.1:1 even with the scrim strengthened. -->
+          <div class="font-body text-label-caps text-cream opacity-90 tracking-widest uppercase mb-2">The Venue</div>
+          <h2 class="font-display text-headline-md text-cream leading-none">Summerfields</h2>
+          <p class="font-serif text-body-lg text-cream italic mt-1 opacity-85">Kottawa</p>
         </div>
+      </div>
+      <div class="px-7 pt-6 text-center">
+        <p class="font-body text-body-md text-muted">No. 139 Piliyandala Road,<br/>Palanwatta, Pannipitiya</p>
       </div>
       <div class="p-6 border-t border-wine/25 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="font-body text-body-md text-muted text-center sm:text-left">For directions or any travel questions, reach out to us directly &mdash; we're happy to help.</p>
@@ -502,7 +559,10 @@
   </section>
 
   <!-- RSVP -->
-  <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center px-2 border-t border-wine/30 pt-16 scroll-mt-24" id="rsvp">
+  <!-- On a panel like the cards above it. The backdrop photo's chandelier sits
+       mid-screen whatever the scroll position, and without a surface the pill
+       outlines and field rules disappear into it. -->
+  <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center panel rounded-3xl p-8 md:p-10 scroll-mt-24" id="rsvp">
     <h2 class="reveal font-display text-headline-md text-wine-bright mb-6">RSVP &amp; Inquiries</h2>
     <p class="reveal font-serif text-body-lg text-muted mb-10 italic" style="--reveal-delay:.1s;">We kindly ask you to confirm your presence to share this joyous evening with us.</p>
 
