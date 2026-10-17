@@ -18,7 +18,7 @@
           // Wine and black. "wine-bright" is the one for small text on the dark
           // ground; "wine" is too dark for anything under 24px.
           "ink": "#120909", "ink-2": "#1B0F0E", "ink-3": "#241413",
-          "wine": "#9C2A26", "wine-bright": "#E08279", "wine-deep": "#6B1714",
+          "wine": "#D13429", "wine-bright": "#EC8B7C", "wine-deep": "#8E1E18",
           "cream": "#F4ECE7", "muted": "#C8B4AE"
         },
         // NB: do not add a "full" key here. Overriding it turns every
@@ -61,7 +61,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.55;
+    opacity: 0.25;
     /* A real dark filter on the photo itself. The scrim below only veils it
        towards flat black; brightness() takes it down while contrast and
        saturate keep the drapery's depth and colour, so it reads deep rather
@@ -87,18 +87,18 @@
     z-index: -9;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 80% 48% at 50% 0%, rgba(156, 42, 38, 0.42), transparent 70%),
-      radial-gradient(ellipse 70% 42% at 50% 100%, rgba(107, 23, 20, 0.34), transparent 72%);
+      radial-gradient(ellipse 80% 48% at 50% 0%, rgba(209, 52, 41, 0.42), transparent 70%),
+      radial-gradient(ellipse 70% 42% at 50% 100%, rgba(142, 30, 24, 0.34), transparent 72%);
   }
 
   .panel {
     /* A wine-tinted gradient and an inset top highlight, so the cards have
        body. At a flat 3.5% white they were nearly invisible on the dark ground
        and the middle of the page read as a void. */
-    background: linear-gradient(160deg, rgba(156, 42, 38, 0.16), rgba(255, 255, 255, 0.03) 58%);
+    background: linear-gradient(160deg, rgba(209, 52, 41, 0.16), rgba(255, 255, 255, 0.03) 58%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(224, 130, 121, 0.3);
+    border: 1px solid rgba(236, 139, 124, 0.3);
     box-shadow: inset 0 1px 0 rgba(244, 236, 231, 0.08), 0 24px 60px -30px rgba(0, 0, 0, 0.9);
   }
   .vellum { background: radial-gradient(circle at 50% 40%, #241413 0%, #120909 75%); }
@@ -110,7 +110,7 @@
   .corner {
     position: absolute;
     width: 150px; height: 150px;
-    color: #9C2A26;
+    color: #D13429;
     opacity: 0.3;
     pointer-events: none;
   }
@@ -129,11 +129,11 @@
     letter-spacing: 0.02em;
     /* A narrow wine highlight sweeping warm ivory type, kept light overall so
        the names never lose contrast against the near-black ground. */
-    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #E08279 50%, #F4ECE7 58%, #F4ECE7 100%);
+    background-image: linear-gradient(100deg, #F4ECE7 0%, #F4ECE7 42%, #EC8B7C 50%, #F4ECE7 58%, #F4ECE7 100%);
     background-size: 260% auto;
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 2px 22px rgba(224, 130, 121, 0.3));
+    filter: drop-shadow(0 2px 22px rgba(236, 139, 124, 0.3));
     animation: name-sheen 9s ease-in-out infinite;
   }
   @keyframes name-sheen {
@@ -144,7 +144,7 @@
     content: '';
     position: absolute; left: 50%; bottom: 0;
     height: 1px; width: 0;
-    background: linear-gradient(90deg, transparent, #E08279 50%, transparent);
+    background: linear-gradient(90deg, transparent, #EC8B7C 50%, transparent);
     transform: translateX(-50%);
     animation: underline-grow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: var(--u-delay, 1s);
@@ -166,7 +166,7 @@
   .lineage-label {
     font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
     letter-spacing: 0.34em; text-transform: uppercase;
-    color: #E08279; padding-left: 0.34em;
+    color: #EC8B7C; padding-left: 0.34em;
   }
   .lineage-name {
     font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
@@ -183,16 +183,16 @@
     gap: 22px; width: min(320px, 80%); margin: 26px auto 22px;
   }
   .amp-row .rule { flex: 1; height: 1px; }
-  .amp-row .rule-l { background: linear-gradient(90deg, transparent, rgba(224, 130, 121, 0.6)); }
-  .amp-row .rule-r { background: linear-gradient(90deg, rgba(224, 130, 121, 0.6), transparent); }
+  .amp-row .rule-l { background: linear-gradient(90deg, transparent, rgba(236, 139, 124, 0.6)); }
+  .amp-row .rule-r { background: linear-gradient(90deg, rgba(236, 139, 124, 0.6), transparent); }
   .amp {
     /* Great Vibes, not Pinyon: its ampersand is a proper flourish, where
        Pinyon's is a small mark. The names stay in Pinyon, whose capital A is
        unambiguous. */
     font-family: 'Great Vibes', cursive;
     font-size: clamp(2.9rem, 10vw, 4.2rem); line-height: 1;
-    color: #E08279; transform: translateY(-0.08em);
-    filter: drop-shadow(0 2px 14px rgba(224, 130, 121, 0.35));
+    color: #EC8B7C; transform: translateY(-0.08em);
+    filter: drop-shadow(0 2px 14px rgba(236, 139, 124, 0.35));
   }
 
   /* ---------- Drifting hearts ----------
@@ -204,7 +204,7 @@
     position: absolute;
     bottom: 0;
     left: var(--x, 50%);
-    color: var(--hue, #E08279);
+    color: var(--hue, #EC8B7C);
     font-size: var(--size, 16px);
     opacity: 0;
     animation: heart-blow var(--dur, 10s) ease-in-out infinite;
@@ -212,7 +212,7 @@
     font-variation-settings: 'FILL' 1, 'wght' 300;
     /* The backdrop photo is busy, so a soft glow separates each heart from the
        drapery behind it. Without this they disappear into the folds. */
-    filter: drop-shadow(0 0 7px rgba(224, 130, 121, 0.55));
+    filter: drop-shadow(0 0 7px rgba(236, 139, 124, 0.55));
     will-change: transform, opacity;
   }
   @keyframes heart-blow {
@@ -249,16 +249,16 @@
     /* The Tailwind forms plugin paints inputs white and its selector beats a
        plain class, so this needs !important to stay transparent on the dark ground. */
     background-color: transparent !important;
-    border-bottom: 1px solid rgba(224, 130, 121, 0.4) !important;
+    border-bottom: 1px solid rgba(236, 139, 124, 0.4) !important;
     padding: 10px 2px; transition: border-color .3s ease;
   }
-  .field:focus { border-bottom-color: #E08279 !important; }
+  .field:focus { border-bottom-color: #EC8B7C !important; }
   .field::placeholder { color: #9A8683; }
   .stepper {
     /* Matches the +/- button height; at its natural 41px the underline sat
        5px below them. */
     height: 32px; padding: 0;
-    border-bottom: 1px solid rgba(224, 130, 121, 0.4) !important;
+    border-bottom: 1px solid rgba(236, 139, 124, 0.4) !important;
     text-align: center; color: #F4ECE7;
     background-color: transparent !important;
   }
@@ -267,11 +267,11 @@
   .pills input { position: absolute; opacity: 0; pointer-events: none; }
   .pills label {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: 10px 18px; border: 1px solid rgba(224, 130, 121, 0.45);
+    padding: 10px 18px; border: 1px solid rgba(236, 139, 124, 0.45);
     border-radius: 9999px; cursor: pointer; transition: all .25s ease;
     user-select: none; color: #E8D8D2;
   }
-  .pills input:checked + label { background: #9C2A26; border-color: #9C2A26; color: #fff; }
+  .pills input:checked + label { background: #D13429; border-color: #D13429; color: #fff; }
 
   .toast {
     position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
@@ -287,7 +287,7 @@
     70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(201,105,122,0); }
     100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(201,105,122,0); }
   }
-  .nav-active { color: #E08279 !important; }
+  .nav-active { color: #EC8B7C !important; }
 
   @media (prefers-reduced-motion: reduce) {
     .name { animation: none; }
@@ -434,14 +434,14 @@
       <!-- Hearts drift up behind the names. z-0 keeps them under every text
            layer, which all sit at z-10. -->
       <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-visible z-0">
-        <span class="material-symbols-outlined heart" style="--x:7%;  --size:17px; --hue:#F0A49B; --peak:.85; --dur:12s;   --delay:0s;   --drift:18px; --rise:430px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:21%; --size:13px; --hue:#E08279; --peak:.9;  --dur:10s;   --delay:1.7s; --drift:-15px; --rise:380px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:34%; --size:20px; --hue:#D95F55; --peak:.78; --dur:13.5s; --delay:3.4s; --drift:22px; --rise:470px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:47%; --size:15px; --hue:#F0A49B; --peak:.88; --dur:11s;   --delay:5.1s; --drift:-19px; --rise:410px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:61%; --size:18px; --hue:#E08279; --peak:.82; --dur:12.5s; --delay:2.3s; --drift:17px; --rise:450px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:74%; --size:14px; --hue:#F0A49B; --peak:.9;  --dur:9.5s;  --delay:6.2s; --drift:-21px; --rise:370px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:86%; --size:19px; --hue:#D95F55; --peak:.76; --dur:14s;   --delay:4.1s; --drift:20px; --rise:490px;">favorite</span>
-        <span class="material-symbols-outlined heart" style="--x:94%; --size:12px; --hue:#E08279; --peak:.92; --dur:10.5s; --delay:7.6s; --drift:-14px; --rise:350px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:7%;  --size:17px; --hue:#F8ADA2; --peak:.85; --dur:12s;   --delay:0s;   --drift:18px; --rise:430px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:21%; --size:13px; --hue:#EC8B7C; --peak:.9;  --dur:10s;   --delay:1.7s; --drift:-15px; --rise:380px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:34%; --size:20px; --hue:#EF6553; --peak:.78; --dur:13.5s; --delay:3.4s; --drift:22px; --rise:470px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:47%; --size:15px; --hue:#F8ADA2; --peak:.88; --dur:11s;   --delay:5.1s; --drift:-19px; --rise:410px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:61%; --size:18px; --hue:#EC8B7C; --peak:.82; --dur:12.5s; --delay:2.3s; --drift:17px; --rise:450px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:74%; --size:14px; --hue:#F8ADA2; --peak:.9;  --dur:9.5s;  --delay:6.2s; --drift:-21px; --rise:370px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:86%; --size:19px; --hue:#EF6553; --peak:.76; --dur:14s;   --delay:4.1s; --drift:20px; --rise:490px;">favorite</span>
+        <span class="material-symbols-outlined heart" style="--x:94%; --size:12px; --hue:#EC8B7C; --peak:.92; --dur:10.5s; --delay:7.6s; --drift:-14px; --rise:350px;">favorite</span>
       </div>
 
       <div class="relative z-10 flex items-center justify-center gap-3">

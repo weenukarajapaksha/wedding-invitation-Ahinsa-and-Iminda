@@ -57,8 +57,13 @@ because `muted` at 60% computed to 3.71:1.
 ## The backdrop photo
 
 `assets/page-background.jpg` (615x923) sits behind the page as `#page-bg`,
-scoped to the same centred 600px column as everything else, at `opacity: 0.55`.
-That is the one number to change if you want it stronger or quieter.
+scoped to the same centred 600px column as everything else, at `opacity: 0.25`,
+so it reads as a faint texture rather than a picture.
+
+Note that opacity and the brightness filter below both reduce it, and at 0.25
+opacity with brightness 0.42 the photo is being dimmed twice over. If you ever
+want it subtle but more clearly visible, raise the brightness towards 0.8 and
+leave the opacity low, rather than raising the opacity.
 
 Its height is pinned with `100lvh` rather than stretched between top and
 bottom. On a phone the address bar collapses as you scroll, which changes the
@@ -84,8 +89,8 @@ Reach for the brightness filter first. A scrim heavy enough to do the darkening
 on its own veils the picture towards flat black and kills its depth; the filter
 darkens without that loss, and measured better on every text pairing.
 
-Measured against the brightest patch behind each text block: names 15.0:1,
-small caps labels 6.0:1, the invitation line 7.9:1. All clear their thresholds
+Measured against the brightest patch behind each text block: names 14.6:1,
+small caps labels 5.9:1, the invitation line 6.3:1. All clear their thresholds
 comfortably. The invitation line is the one to watch, since it falls over the
 lighter floor of the photo — re-measure if you lighten either control.
 
